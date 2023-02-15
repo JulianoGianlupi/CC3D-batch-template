@@ -53,7 +53,7 @@ class UniCell_Explicit_Force_2DSteppable(ViralInfectionVTMSteppableBasePy):
 
         # to_seed = density * self.dim.x * self.dim.y * self.
 
-        self.seed_cells(numero)
+        self.seed_cells(number)
 
         self.plot_win = self.add_new_plot_window(title='Theta',
                                                  x_axis_title='MonteCarlo Step (MCS)',
