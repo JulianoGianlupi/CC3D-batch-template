@@ -1,58 +1,38 @@
+from pathlib import Path
+import os
 # Model inputs
-
-
-full_dict = {"alpha": [.1, .25, .5, .75, .9, .99],  # 6
-             "beta": [0],
-             "numero": [2, 10, 50, 100, 500, 1000, 4000]}  # 7
-
-ruido_var = {"alpha": [.1, .9],  # 2
+var_dict = {"alpha": [.1, .9],  # 2
              "beta": [.1, .25, .5],  # 3
-             "numero": [2, 500, 1000]}  # 3
+             "number": [2, 500, 1000]}  # 3
 
-# ___
-# 60
-
-mult_dict = full_dict
+mult_dict = var_dict
+# number of replicates
 num_rep = 4
 # Model output frequency
 model_out_freq = 1
 # Output frequency of simulation data per simulation replica
 out_freq = 250
 # Root output directory
+sweep_output_folder = r'/output/'
+if not os.path.isdir(sweep_output_folder):
+    Path(sweep_output_folder).mkdir(parents=True)
 
-# sweep_output_folder = r'/N/slate/jferrari/new_pk/corrected_ic50_calc/ddm_batch_1'
-#
-sweep_output_folder = r'/N/slate/jferrari/helping_br/principal'
-# sweep_output_folder = r'/N/slate/jferrari/helping_br/ruido'
 # Input modules
-# from Simulation import ViralInfectionVTMModelInputs
-# from Models.DrugDosingModel import DrugDosingInputs
-
 from Models.Motion.Simulation import UniCellModelInputs
-
-# input_modules = [ViralInfectionVTMModelInputs, DrugDosingInputs]
 input_modules = [UniCellModelInputs]
 # Automatic inputs
 from BatchRun import BatchRunLib
-
-# BatchRunLib.register_auto_inputs(input_module_name='ViralInfectionVTMModelInputs',
-#                                  plot_var_names=['plot_vrm_data_freq', 'plot_vrm_data_freq', 'plot_vim_data_freq',
-#                                                  'plot_pop_data_freq', 'plot_ir_data_freq', 'plot_med_diff_data_freq',
-#                                                  'plot_spat_data_freq', 'plot_death_data_freq'],
-#                                  write_var_names=['write_pop_data_freq', 'write_med_diff_data_freq',
-#                                                   'write_ir_data_freq', 'write_death_data_freq'])
-# C:\github\covid-tissue-response-models\CC3D\Models\BiocIU\SARSCoV2MultiscaleVTM\Model\Models\Motion
 BatchRunLib.register_auto_inputs(input_module_name='Models.Motion.UniCellModelInputs')
 
 # Carbonate configuration
-from BatchRun.BatchRunPrototyping import carbonate_config_template
+from BatchRun.BatchRunPrototyping import config_template
 
-carbonate_config_template = carbonate_config_template()
-carbonate_config_template['jn'] = 'br_principal'
-carbonate_config_template['wh'] = 18
-carbonate_config_template['wm'] = 0
-carbonate_config_template['ppn'] = 8
-carbonate_config_template['vmem'] = 10
+config_template = config_template()
+config_template['jn'] = 'br_principal'
+config_template['wh'] = 18
+config_template['wm'] = 0
+config_template['ppn'] = 8
+config_template['vmem'] = 10
 
 # Begin computing work
 import os
@@ -108,7 +88,7 @@ def main():
     num_sets = get_num_sets()
 
     # Add set labels to job names; scheduler adds run labels
-    carbonate_config = [carbonate_config_template.copy() for _ in range(num_sets)]
+    carbonate_config = [config_template.copy() for _ in range(num_sets)]
     set_idx = 0
     for cc in carbonate_config:
         cc['jn'] += f'_{set_idx}'

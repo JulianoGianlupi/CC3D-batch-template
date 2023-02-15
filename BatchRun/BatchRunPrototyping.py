@@ -46,7 +46,7 @@ _default_config = {'ec': None,
                    'wm': None}
 
 
-def carbonate_config_template():
+def config_template():
     return _default_config.copy()
 
 
