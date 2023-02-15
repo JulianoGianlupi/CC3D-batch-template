@@ -86,7 +86,35 @@ class Steppable0(ViralInfectionVTMSteppableBasePy):
 Note that we are using `ViralInfectionVTMSteppableBasePy` as the parent class of the steppable, instead of the usual
 `SteppableBasePy`.
 
+## Output organization
 
+The outputs will be placed in the folder `sweep_output_folder`, each parameter combination is called a "set" and 
+receives its own folder in `sweep_output_folder`, _i.e._:
+
+```
+sweep_output_folder
+            |-- set_0
+            |-- set_1
+            | ...
+            |-- set_N
+```
+
+Each replicate of a set is placed in the set folder under its own folder, called "run", _i.e._:
+
+```
+sweep_output_folder
+            |-- set_0
+                  | -- run_0
+                  | -- run_1
+                  | ...
+                  | -- run_N
+            | -- set_1
+                  | -- run_0
+                  | -- run_1
+                  | ...
+                  | -- run_N
+            | ...
+```
 
 ## References
 1. Sego, T. J., Josua O. Aponte-Serrano, Juliano Ferrari Gianlupi, Samuel R. Heaps, Kira Breithaupt, Lutz Brusch, 
