@@ -38,6 +38,7 @@ def register_auto_inputs(input_module_name: str, plot_var_names=None, write_var_
     :param write_var_names: list of string names of writing variables to automatically set in batch run mode
     :return: None
     """
+    input_module_name.replace(".py", "")
     if plot_var_names is not None:
         if input_module_name not in mod_plot_vars.keys():
             mod_plot_vars[input_module_name] = []
