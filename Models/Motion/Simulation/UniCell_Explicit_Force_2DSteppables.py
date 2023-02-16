@@ -8,30 +8,22 @@ import random as rd
 from statistics import mean
 import os
 from array import array
+
 # Import project libraries and classes
 sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(__file__)))))
-# sys.path.append(os.path.join(os.environ["ViralInfectionVTM"], "Simulation"))
-# sys.path.append(os.environ["ViralInfectionVTM"])
+
 # Import project libraries and classes
 sys.path.append(os.path.dirname(__file__))
-# from Simulation.ViralInfectionVTMSteppableBasePy import *
-# import ViralInfectionVTMLib
-# from ViralInfectionVTMModelInputs import *
 from BatchRun import BatchRunLib
 
 # Import toolkit
 sys.path.append(os.path.dirname(os.path.dirname(__file__)))
-from nCoVToolkit import nCoVUtils
 
 from UniCellModelInputs import *
 
 
 a = alpha
 b = beta
-# density = .1
-
-
-# rs = 1
 
 class UniCell_Explicit_Force_2DSteppable(SteppableBasePy):
 
