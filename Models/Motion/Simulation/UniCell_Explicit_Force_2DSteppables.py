@@ -30,7 +30,7 @@ class UniCell_Explicit_Force_2DSteppable(SteppableBasePy):
     def __init__(self, frequency=1):
 
         SteppableBasePy.__init__(self, frequency)
-        import UniCellModelInputs# as UniCellModelInputs
+        import UniCellModelInputs
         BatchRunLib.apply_external_multipliers(__name__, UniCellModelInputs)
         self.alpha = alpha
         self.beta = beta
