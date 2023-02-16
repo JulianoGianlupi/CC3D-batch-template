@@ -30,13 +30,10 @@ class UniCell_Explicit_Force_2DSteppable(SteppableBasePy):
     def __init__(self, frequency=1):
 
         SteppableBasePy.__init__(self, frequency)
-        # import ViralInfectionVTMModelInputs as ViralInfectionVTMModelInputs
-        # import Models.DrugDosingModel.DrugDosingInputs as DrugDosingInputs
         import UniCellModelInputs# as UniCellModelInputs
         BatchRunLib.apply_external_multipliers(__name__, UniCellModelInputs)
         self.alpha = alpha
         self.beta = beta
-        # self.memory = 0.4 #must be less than 0.5
 
     def start(self):
         """
