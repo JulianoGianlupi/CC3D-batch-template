@@ -14,8 +14,8 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(
 # sys.path.append(os.environ["ViralInfectionVTM"])
 # Import project libraries and classes
 sys.path.append(os.path.dirname(__file__))
-from Simulation.ViralInfectionVTMSteppableBasePy import *
-import ViralInfectionVTMLib
+# from Simulation.ViralInfectionVTMSteppableBasePy import *
+# import ViralInfectionVTMLib
 # from ViralInfectionVTMModelInputs import *
 from BatchRun import BatchRunLib
 
@@ -33,11 +33,11 @@ b = beta
 
 # rs = 1
 
-class UniCell_Explicit_Force_2DSteppable(ViralInfectionVTMSteppableBasePy):
+class UniCell_Explicit_Force_2DSteppable(SteppableBasePy):
 
     def __init__(self, frequency=1):
 
-        ViralInfectionVTMSteppableBasePy.__init__(self, frequency)
+        SteppableBasePy.__init__(self, frequency)
         # import ViralInfectionVTMModelInputs as ViralInfectionVTMModelInputs
         # import Models.DrugDosingModel.DrugDosingInputs as DrugDosingInputs
         import UniCellModelInputs# as UniCellModelInputs
@@ -176,7 +176,7 @@ class UniCell_Explicit_Force_2DSteppable(ViralInfectionVTMSteppableBasePy):
         """
 
 
-class CalculationsSteppable(ViralInfectionVTMSteppableBasePy):
+class CalculationsSteppable(SteppableBasePy):
     def __init__(self, frequency=1):
         '''
         constructor
@@ -260,7 +260,7 @@ class CalculationsSteppable(ViralInfectionVTMSteppableBasePy):
         return
 
 
-class PersistentNeighborsSteppable(ViralInfectionVTMSteppableBasePy):
+class PersistentNeighborsSteppable(SteppableBasePy):
     def __init__(self, frequency=1):
         SteppableBasePy.__init__(self, frequency)
 
@@ -333,7 +333,7 @@ class PersistentNeighborsSteppable(ViralInfectionVTMSteppableBasePy):
         return
 
 
-class CollectivityCalcSteppable(ViralInfectionVTMSteppableBasePy):
+class CollectivityCalcSteppable(SteppableBasePy):
 
     def __init__(self, frequency=1):
         SteppableBasePy.__init__(self, frequency)
@@ -393,7 +393,7 @@ class CollectivityCalcSteppable(ViralInfectionVTMSteppableBasePy):
         return
 
 
-class Position_OutputSteppable(ViralInfectionVTMSteppableBasePy):
+class Position_OutputSteppable(SteppableBasePy):
     def __init__(self, frequency=1):
         SteppableBasePy.__init__(self, frequency)
 

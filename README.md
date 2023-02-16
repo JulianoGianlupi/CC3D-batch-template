@@ -73,18 +73,16 @@ from ModelInputs import *
 
 # ...
 
-class Steppable0(ViralInfectionVTMSteppableBasePy):
+class Steppable0(SteppableBasePy):
 
     def __init__(self, frequency=1):
 
-        ViralInfectionVTMSteppableBasePy.__init__(self, frequency)
+        SteppableBasePy.__init__(self, frequency)
         import ModelInputs
         BatchRunLib.apply_external_multipliers(__name__, ModelInputs)
 # ...
 ```
 
-Note that we are using `ViralInfectionVTMSteppableBasePy` as the parent class of the steppable, instead of the usual
-`SteppableBasePy`.
 
 ## Output organization
 
