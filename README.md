@@ -56,30 +56,44 @@ file, and `BatchRun.BatchRunLib.apply_external_multipliers` applied to the input
 that is registered in the main python file. _E.g._:
 
 ```python
-# ...
+import sys
+
+import math
+
+import numpy as np
+from cc3d.core.PySteppables import *
+import random as rd
+from statistics import mean
+import os
+from array import array
+
 # Import project libraries and classes
 sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(__file__)))))
+
 # Import project libraries and classes
 sys.path.append(os.path.dirname(__file__))
-from Simulation.ViralInfectionVTMSteppableBasePy import *
-import ViralInfectionVTMLib
-# from ViralInfectionVTMModelInputs import *
 from BatchRun import BatchRunLib
 
 # Import toolkit
 sys.path.append(os.path.dirname(os.path.dirname(__file__)))
-from nCoVToolkit import nCoVUtils
-from ModelInputs import *
+
+from UniCellModelInputs import *
 
 # ...
 
-class Steppable0(SteppableBasePy):
+
+a = alpha
+b = beta
+
+class UniCell_Explicit_Force_2DSteppable(SteppableBasePy):
 
     def __init__(self, frequency=1):
 
         SteppableBasePy.__init__(self, frequency)
-        import ModelInputs
-        BatchRunLib.apply_external_multipliers(__name__, ModelInputs)
+        import UniCellModelInputs
+        BatchRunLib.apply_external_multipliers(__name__, UniCellModelInputs)
+        self.alpha = alpha
+        self.beta = beta
 # ...
 ```
 
